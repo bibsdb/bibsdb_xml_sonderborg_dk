@@ -68,8 +68,6 @@ function bibsdb_xml_sonderborg_dk_field_formatter_view($entity_type, $entity, $f
 * Theme function for grasmash_formatter_grasmash_phone_mobile_call_link.
 */
 function theme_bibsdb_xml_sonderborg_dk_bibsdb_event_location($element) {
-	dd("FIELD");
-	dd($element['field']);
 	$location = "";
 	$location .= "<name>Location Name</name>";
 	$location .= "<address1>Address Line 1</address1>";

@@ -1,0 +1,122 @@
+<?php
+/**
+ * @file
+ * Code for the Bibsdb XML sonderborg.dk feature.
+ */
+
+include_once 'bibsdb_xml_sonderborg_dk.features.inc';
+
+/**
+* Implements hook_theme().
+*/
+function bibsdb_xml_sonderborg_dk_theme() {
+  return array(
+    'bibsdb_xml_sonderborg_dk_bibsdb_p2b_url' => array(
+      'variables' => array('url' => NULL),
+    ),
+    'bibsdb_xml_sonderborg_dk_bibsdb_p2b_sold_out' => array(
+      'variables' => array('sold_out' => NULL),
+    ),
+    'bibsdb_xml_sonderborg_dk_bibsdb_event_location' => array(
+      'variables' => array('sold_out' => NULL),
+    ),
+  );
+}
+
+/**
+* Implements hook_field_formatter_info().
+*/
+function bibsdb_xml_sonderborg_dk_field_formatter_info() {
+  $info = array(
+    'bibsdb_p2b_url' => array(
+      'label' => t('The place2book url of the event'), 
+      'field types' => array('text'),
+      'description' => t('The place2book url of an event.'),
+    ), 
+    'bibsdb_p2b_sold_out' => array(
+      'label' => t('Boolean. 1 if sold out. 0 if available.'), 
+      'field types' => array('text'),
+      'description' => t('Boolean. 1 if sold out. 0 if available.'),
+    ), 
+    'bibsdb_event_location' => array(
+      'label' => t('Location address merged with library address.'), 
+      'field types' => array('addressfield'),
+      'description' => t('Location address merged with library address.'),
+    ), 
+  );
+  return $info;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ * This code just passes straight through to a theme function.
+ */
+function bibsdb_xml_sonderborg_dk_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $elements = array();
+  foreach ($items as $delta => $item) {
+    $element = array('entity' => $entity, 'field' => $field);
+    $elements[$delta] = array(
+      '#markup' => theme('bibsdb_xml_sonderborg_dk_'. $display['type'], $element),
+    );
+  }
+
+  return $elements;
+}
+
+
+/**
+* Theme function for grasmash_formatter_grasmash_phone_mobile_call_link.
+*/
+function theme_bibsdb_xml_sonderborg_dk_bibsdb_event_location($element) {
+	dd("FIELD");
+	dd($element['field']);
+	$location = "";
+	$location .= "<name>Location Name</name>";
+	$location .= "<address1>Address Line 1</address1>";
+	$location .= "<address2>Address Line 2</address2>";
+	$location .= "<postalcode>Postal Code</postalcode>";
+	$location .= "<city>City</city>";
+	$location .= "<phone>Address Line 1</phone>";
+	$location .= "<email>Address Line 1</email>";
+
+
+	return $location;
+}
+
+
+
+/**
+* Theme function for grasmash_formatter_grasmash_phone_mobile_call_link.
+*/
+function theme_bibsdb_xml_sonderborg_dk_bibsdb_p2b_url($element) {
+	$wrapper = entity_metadata_wrapper('node', $element['entity']);
+	$url =  $GLOBALS['base_url'] . '/ding/place2book/ticketinfo/' . $wrapper->getIdentifier();
+	$json = file_get_contents($url);
+	$obj = json_decode($json);
+
+	// If markup is null the event is passive
+	if (!is_null($obj->markup)) {
+  	return $url;
+  }
+}
+
+/**
+* Theme function for grasmash_formatter_grasmash_phone_mobile_call_link.
+*/
+function theme_bibsdb_xml_sonderborg_dk_bibsdb_p2b_sold_out($element) {
+	$wrapper = entity_metadata_wrapper('node', $element['entity']);
+	$url =  $GLOBALS['base_url'] . '/ding/place2book/ticketinfo/' . $wrapper->getIdentifier();
+	$json = file_get_contents($url);
+	$obj = json_decode($json);
+
+	// If markup is null the event is passive and sold_out tag should be hidden
+	if (is_null($obj->markup)) {
+  	return '';
+  }
+
+  // If markup contains "Udsolgt" return true, else return false
+  if (strpos($obj->markup,'Udsolgt') !== false) {
+		return 'true';
+	}
+	return 'false';
+}

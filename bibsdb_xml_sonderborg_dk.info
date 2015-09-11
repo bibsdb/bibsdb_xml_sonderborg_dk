@@ -1,0 +1,14 @@
+name = Bibsdb XML sonderborg.dk
+core = 7.x
+package = Bibsdb
+dependencies[] = ctools
+dependencies[] = ding_event
+dependencies[] = ding_place2book
+dependencies[] = views
+dependencies[] = views_content
+dependencies[] = views_xml
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = bibsdb_xml_sonderborg_dk
+mtime = 1441796243
+project path = sites/default/modules

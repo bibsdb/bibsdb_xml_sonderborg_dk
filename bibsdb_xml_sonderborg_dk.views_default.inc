@@ -24,7 +24,8 @@ function bibsdb_xml_sonderborg_dk_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['use_more_always'] = TRUE;
-  $handler->display->display_options['use_more_text'] = 'See all events';
+  $handler->display->display_options['use_more_text'] = 'Se alle arrangementer
+';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -42,25 +43,27 @@ function bibsdb_xml_sonderborg_dk_views_default_views() {
   $handler->display->display_options['style_options']['top_child_object'] = 'event';
   $handler->display->display_options['style_options']['plaintext_output'] = 0;
   $handler->display->display_options['style_options']['header'] = '';
+  $handler->display->display_options['style_options']['author'] = 'ding-admin';
   $handler->display->display_options['style_options']['using_views_api_mode'] = 0;
-  /* No results behavior: Global: Text area */
+  /* Opførsel ved ingen resultater: Global: Tekstområde */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['label'] = 'Empty text';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'No events where found.';
+  $handler->display->display_options['empty']['area']['content'] = 'Ingen arrangementer';
   $handler->display->display_options['empty']['area']['format'] = 'ding_wysiwyg';
-  /* Relationship: Entity Reference: Referenced Entity */
+  /* Forbindelse: Entity Reference: Refereret entity */
   $handler->display->display_options['relationships']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
   $handler->display->display_options['relationships']['og_group_ref_target_id']['table'] = 'og_membership';
   $handler->display->display_options['relationships']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
-  /* Field: Content: Nid */
+  $handler->display->display_options['relationships']['og_group_ref_target_id']['label'] = 'Content entity referenced from og_group_ref';
+  /* Felt: Indhold: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
   $handler->display->display_options['fields']['nid']['label'] = 'nid';
-  /* Field: Title */
+  /* Felt: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -76,7 +79,7 @@ function bibsdb_xml_sonderborg_dk_views_default_views() {
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Lead */
+  /* Felt: Lead */
   $handler->display->display_options['fields']['field_ding_event_lead']['id'] = 'field_ding_event_lead';
   $handler->display->display_options['fields']['field_ding_event_lead']['table'] = 'field_data_field_ding_event_lead';
   $handler->display->display_options['fields']['field_ding_event_lead']['field'] = 'field_ding_event_lead';
@@ -84,7 +87,7 @@ function bibsdb_xml_sonderborg_dk_views_default_views() {
   $handler->display->display_options['fields']['field_ding_event_lead']['label'] = 'lead';
   $handler->display->display_options['fields']['field_ding_event_lead']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_ding_event_lead']['element_default_classes'] = FALSE;
-  /* Field: Body */
+  /* Felt: Body */
   $handler->display->display_options['fields']['field_ding_event_body']['id'] = 'field_ding_event_body';
   $handler->display->display_options['fields']['field_ding_event_body']['table'] = 'field_data_field_ding_event_body';
   $handler->display->display_options['fields']['field_ding_event_body']['field'] = 'field_ding_event_body';
@@ -92,7 +95,7 @@ function bibsdb_xml_sonderborg_dk_views_default_views() {
   $handler->display->display_options['fields']['field_ding_event_body']['label'] = 'body';
   $handler->display->display_options['fields']['field_ding_event_body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_ding_event_body']['element_default_classes'] = FALSE;
-  /* Field: Date and time */
+  /* Felt: Date and time */
   $handler->display->display_options['fields']['field_ding_event_date']['id'] = 'field_ding_event_date';
   $handler->display->display_options['fields']['field_ding_event_date']['table'] = 'field_data_field_ding_event_date';
   $handler->display->display_options['fields']['field_ding_event_date']['field'] = 'field_ding_event_date';
@@ -108,7 +111,7 @@ function bibsdb_xml_sonderborg_dk_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Price */
+  /* Felt: Price */
   $handler->display->display_options['fields']['field_ding_event_price']['id'] = 'field_ding_event_price';
   $handler->display->display_options['fields']['field_ding_event_price']['table'] = 'field_data_field_ding_event_price';
   $handler->display->display_options['fields']['field_ding_event_price']['field'] = 'field_ding_event_price';
@@ -119,7 +122,7 @@ function bibsdb_xml_sonderborg_dk_views_default_views() {
     'thousand_separator' => ' ',
     'prefix_suffix' => 1,
   );
-  /* Field: Content: Category */
+  /* Felt: Indhold: Category */
   $handler->display->display_options['fields']['field_ding_event_category']['id'] = 'field_ding_event_category';
   $handler->display->display_options['fields']['field_ding_event_category']['table'] = 'field_data_field_ding_event_category';
   $handler->display->display_options['fields']['field_ding_event_category']['field'] = 'field_ding_event_category';
@@ -127,19 +130,19 @@ function bibsdb_xml_sonderborg_dk_views_default_views() {
   $handler->display->display_options['fields']['field_ding_event_category']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_ding_event_category']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_ding_event_category']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Place2book Tickets */
+  /* Felt: Indhold: Place2book Tickets */
   $handler->display->display_options['fields']['field_place2book_tickets']['id'] = 'field_place2book_tickets';
   $handler->display->display_options['fields']['field_place2book_tickets']['table'] = 'field_data_field_place2book_tickets';
   $handler->display->display_options['fields']['field_place2book_tickets']['field'] = 'field_place2book_tickets';
   $handler->display->display_options['fields']['field_place2book_tickets']['label'] = 'url';
   $handler->display->display_options['fields']['field_place2book_tickets']['type'] = 'bibsdb_p2b_url';
-  /* Field: Content: Place2book Tickets */
+  /* Felt: Indhold: Place2book Tickets */
   $handler->display->display_options['fields']['field_place2book_tickets_1']['id'] = 'field_place2book_tickets_1';
   $handler->display->display_options['fields']['field_place2book_tickets_1']['table'] = 'field_data_field_place2book_tickets';
   $handler->display->display_options['fields']['field_place2book_tickets_1']['field'] = 'field_place2book_tickets';
   $handler->display->display_options['fields']['field_place2book_tickets_1']['label'] = 'sold_out';
   $handler->display->display_options['fields']['field_place2book_tickets_1']['type'] = 'bibsdb_p2b_sold_out';
-  /* Field: Content: Location */
+  /* Felt: Indhold: Location */
   $handler->display->display_options['fields']['field_ding_event_location_1']['id'] = 'field_ding_event_location_1';
   $handler->display->display_options['fields']['field_ding_event_location_1']['table'] = 'field_data_field_ding_event_location';
   $handler->display->display_options['fields']['field_ding_event_location_1']['field'] = 'field_ding_event_location';
@@ -153,21 +156,21 @@ function bibsdb_xml_sonderborg_dk_views_default_views() {
       'address' => 'address',
     ),
   );
-  /* Field: Content: List image */
+  /* Felt: Indhold: List image */
   $handler->display->display_options['fields']['field_ding_event_list_image']['id'] = 'field_ding_event_list_image';
   $handler->display->display_options['fields']['field_ding_event_list_image']['table'] = 'field_data_field_ding_event_list_image';
   $handler->display->display_options['fields']['field_ding_event_list_image']['field'] = 'field_ding_event_list_image';
-  $handler->display->display_options['fields']['field_ding_event_list_image']['label'] = 'image';
+  $handler->display->display_options['fields']['field_ding_event_list_image']['label'] = 'img';
   $handler->display->display_options['fields']['field_ding_event_list_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_ding_event_list_image']['settings'] = array(
     'image_style' => '',
     'image_link' => '',
   );
-  /* Sort criterion: Content: Date -  start date (field_ding_event_date) */
+  /* Sorteringskriterie: Indhold: Date -  startdato (field_ding_event_date) */
   $handler->display->display_options['sorts']['field_ding_event_date_value']['id'] = 'field_ding_event_date_value';
   $handler->display->display_options['sorts']['field_ding_event_date_value']['table'] = 'field_data_field_ding_event_date';
   $handler->display->display_options['sorts']['field_ding_event_date_value']['field'] = 'field_ding_event_date_value';
-  /* Contextual filter: Content: Has taxonomy term ID */
+  /* Kontekstuelt filter: Indhold: Har taksonomiterm ID */
   $handler->display->display_options['arguments']['tid']['id'] = 'tid';
   $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_index';
   $handler->display->display_options['arguments']['tid']['field'] = 'tid';
@@ -181,21 +184,21 @@ function bibsdb_xml_sonderborg_dk_views_default_views() {
   $handler->display->display_options['arguments']['tid']['validate_options']['vocabularies'] = array(
     'event_category' => 'event_category',
   );
-  /* Filter criterion: Content: Published */
+  /* Filterkriterie: Indhold: Udgivet */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 0;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
+  /* Filterkriterie: Indhold: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'ding_event' => 'ding_event',
   );
-  /* Filter criterion: Date: Date (node) */
+  /* Filterkriterie: Dato: Dato (node) */
   $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
   $handler->display->display_options['filters']['date_filter']['table'] = 'node';
   $handler->display->display_options['filters']['date_filter']['field'] = 'date_filter';
@@ -211,14 +214,15 @@ function bibsdb_xml_sonderborg_dk_views_default_views() {
   $handler->display->display_options['path'] = 'xml_sonderborg_dk';
   $translatables['bibsdb_xml_sonderborg_dk'] = array(
     t('Master'),
-    t('See all events'),
+    t('Se alle arrangementer
+'),
     t('Indsend'),
     t('Gendan'),
     t('Sortér efter'),
     t('Stigende'),
     t('Faldende'),
     t('Empty text'),
-    t('No events where found.'),
+    t('Ingen arrangementer'),
     t('Content entity referenced from og_group_ref'),
     t('nid'),
     t('lead'),
@@ -229,10 +233,10 @@ function bibsdb_xml_sonderborg_dk_views_default_views() {
     t('url'),
     t('sold_out'),
     t('location'),
-    t('image'),
+    t('img'),
     t('Alle'),
     t('Page'),
-    t('more'),
+    t('mere'),
   );
   $export['bibsdb_xml_sonderborg_dk'] = $view;
 

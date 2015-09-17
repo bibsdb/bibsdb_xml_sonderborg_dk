@@ -144,6 +144,7 @@ function bibsdb_xml_sonderborg_dk_views_default_views() {
   $handler->display->display_options['fields']['field_ding_event_location_1']['table'] = 'field_data_field_ding_event_location';
   $handler->display->display_options['fields']['field_ding_event_location_1']['field'] = 'field_ding_event_location';
   $handler->display->display_options['fields']['field_ding_event_location_1']['label'] = 'location';
+  $handler->display->display_options['fields']['field_ding_event_location_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_ding_event_location_1']['click_sort_column'] = 'country';
   $handler->display->display_options['fields']['field_ding_event_location_1']['type'] = 'bibsdb_event_location';
   $handler->display->display_options['fields']['field_ding_event_location_1']['settings'] = array(

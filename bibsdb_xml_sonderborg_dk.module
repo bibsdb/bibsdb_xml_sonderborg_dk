@@ -12,19 +12,22 @@ include_once 'bibsdb_xml_sonderborg_dk.features.inc';
 function bibsdb_xml_sonderborg_dk_theme() {
   return array(
     'bibsdb_xml_sonderborg_dk_bibsdb_p2b_url' => array(
-      'variables' => array('url' => NULL),
+      'variables' => array('element' => NULL),
     ),
     'bibsdb_xml_sonderborg_dk_bibsdb_p2b_sold_out' => array(
-      'variables' => array('sold_out' => NULL),
+      'variables' => array('element' => NULL),
     ),
     'bibsdb_xml_sonderborg_dk_bibsdb_event_location' => array(
-      'variables' => array('sold_out' => NULL),
+      'variables' => array('element' => NULL),
+    ),
+    'bibsdb_xml_sonderborg_dk_bibsdb_cdata' => array(
+      'variables' => array('element' => NULL),
     ),
   );
 }
 
 /**
-* Implements hook_field_formatter_info().
+* Implements hook_field_formatter_info().text_long
 */
 function bibsdb_xml_sonderborg_dk_field_formatter_info() {
   $info = array(
@@ -42,6 +45,11 @@ function bibsdb_xml_sonderborg_dk_field_formatter_info() {
       'label' => t('Location address merged with library address.'), 
       'field types' => array('addressfield'),
       'description' => t('Location address merged with library address.'),
+    ), 
+    'bibsdb_cdata' => array(
+      'label' => t('Wrap content in cdata tags.'), 
+      'field types' => array('text_long'),
+      'description' => t('Wrap content in cdata tags.'),
     ), 
   );
   return $info;
@@ -62,6 +70,18 @@ function bibsdb_xml_sonderborg_dk_field_formatter_view($entity_type, $entity, $f
 
   return $elements;
 }
+
+
+/**
+* Theme function for the bibsdb_cdata field formatter.
+*/
+function theme_bibsdb_xml_sonderborg_dk_bibsdb_cdata($element) {
+  $wrapper = entity_metadata_wrapper('node', $element['entity']);
+  $body = $wrapper->field_ding_event_body->value->value();
+  return "<![CDATA[".$body."]]>";
+}
+
+
 
 
 /**

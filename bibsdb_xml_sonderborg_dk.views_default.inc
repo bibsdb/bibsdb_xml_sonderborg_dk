@@ -95,6 +95,7 @@ function bibsdb_xml_sonderborg_dk_views_default_views() {
   $handler->display->display_options['fields']['field_ding_event_body']['label'] = 'body';
   $handler->display->display_options['fields']['field_ding_event_body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_ding_event_body']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_ding_event_body']['type'] = 'bibsdb_cdata';
   /* Felt: Date and time */
   $handler->display->display_options['fields']['field_ding_event_date']['id'] = 'field_ding_event_date';
   $handler->display->display_options['fields']['field_ding_event_date']['table'] = 'field_data_field_ding_event_date';

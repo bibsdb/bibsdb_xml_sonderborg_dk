@@ -77,8 +77,10 @@ function bibsdb_xml_sonderborg_dk_field_formatter_view($entity_type, $entity, $f
 */
 function theme_bibsdb_xml_sonderborg_dk_bibsdb_cdata($element) {
   $wrapper = entity_metadata_wrapper('node', $element['entity']);
+  $lead = $wrapper->field_ding_event_lead->value();
   $body = $wrapper->field_ding_event_body->value->value();
-  return "<![CDATA[".$body."]]>";
+ 
+  return "<![CDATA["."<p>".$lead."</p>".$body."]]>";
 }
 
 
